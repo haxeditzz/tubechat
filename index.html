@@ -108,15 +108,43 @@
         <h1>TubeChat</h1>
         <p>Connect, chat, and share with your friends</p>
     </header>
+
     <main>
-        <a class="download-btn"
-            href="https://github.com/haxeditzz/TUBECHAT-APP-/raw/refs/heads/main/Tubechat_v1.00.05.apk" download>
+        <a id="downloadBtn" class="download-btn" href="#" download>
             Download App
         </a>
     </main>
+
     <footer>
         © 2025 TubeChat. All rights reserved.
     </footer>
+
+    <script>
+        // --------- 1. Check if app name changed ---------
+        const expectedAppName = "TubeChat";
+        const currentAppName = document.querySelector('header h1').textContent.trim();
+
+        if (currentAppName !== expectedAppName) {
+            // Redirect user if app name changed
+            window.location.href = "https://example.com"; // Replace with your redirect URL
+        }
+
+        // --------- 2. Dynamic APK download ---------
+        const downloadBtn = document.getElementById('downloadBtn');
+        const jsonUrl = "https://raw.githubusercontent.com/haxeditzz/TUBECHAT-APP-/main/latest.json";
+
+        fetch(jsonUrl)
+            .then(response => response.json())
+            .then(data => {
+                const apkUrl = `https://github.com/haxeditzz/TUBECHAT-APP-/raw/refs/heads/main/${data.apk_name}`;
+                downloadBtn.href = apkUrl;
+            })
+            .catch(err => {
+                console.error("Failed to fetch APK info:", err);
+                downloadBtn.textContent = "Download unavailable";
+                downloadBtn.style.pointerEvents = "none";
+            });
+    </script>
 </body>
 
 </html>
