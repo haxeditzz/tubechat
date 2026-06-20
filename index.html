@@ -2,225 +2,149 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TubeChat</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TubeChat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #4a90e2, #50e3c2);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.5s;
+        }
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+        body:hover {
+            background: linear-gradient(135deg, #50e3c2, #4a90e2);
+        }
 
-body{
-    font-family:'Roboto',sans-serif;
-    background:linear-gradient(135deg,#4a90e2,#50e3c2);
-    color:white;
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-}
+        header {
+            text-align: center;
+            padding: 50px 20px 30px 20px;
+        }
 
-header{
-    text-align:center;
-    padding:50px 20px 30px;
-}
+        header img {
+            width: 120px;
+            height: 120px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
 
-header img{
-    width:120px;
-    height:120px;
-    border-radius:25px;
-    margin-bottom:20px;
-    box-shadow:0 8px 15px rgba(0,0,0,.3);
-}
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
 
-header h1{
-    font-size:3rem;
-}
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
 
-header p{
-    margin-top:10px;
-    opacity:.9;
-}
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
 
-main{
-    flex:1;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
+        .download-btn {
+            background: #fff;
+            color: #4a90e2;
+            text-decoration: none;
+            padding: 15px 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
 
-.download-btn{
-    background:white;
-    color:#4a90e2;
-    text-decoration:none;
-    padding:15px 50px;
-    border-radius:50px;
-    font-size:1.2rem;
-    font-weight:bold;
+        .download-btn:hover {
+            background-color: #f0f0f0;
+            color: #3a70b2;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
 
-    transition:.3s;
-}
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
 
-.download-btn:hover{
-    transform:translateY(-3px);
-}
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
 
-.download-btn.disabled{
-    opacity:.6;
-    pointer-events:none;
-}
-
-footer{
-    text-align:center;
-    padding:20px;
-    background:rgba(0,0,0,.2);
-}
-
-@media(max-width:600px){
-
-header h1{
-font-size:2.2rem;
-}
-
-.download-btn{
-padding:12px 30px;
-}
-
-}
-</style>
+            .download-btn {
+                font-size: 1rem;
+                padding: 12px 30px;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <header>
+        <img src="tubechat.png" alt="TubeChat Icon">
+        <h1>TubeChat</h1>
+        <p>Connect, chat, and share with your friends</p>
+    </header>
 
-<header>
-<img src="tubechat.png" alt="TubeChat">
+    <main>
+        <a id="downloadBtn" class="download-btn" href="#" download>
+            Download App
+        </a>
+    </main>
 
-<h1>TubeChat</h1>
+    <footer>
+        © 2025 TubeChat. All rights reserved.
+    </footer>
 
-<p>Connect, chat, and share with your friends</p>
+    <script>
+        // --------- 1. Check if app name changed ---------
+        const expectedAppName = "TubeChat";
+        const currentAppName = document.querySelector('header h1').textContent.trim();
 
-</header>
+        if (currentAppName !== expectedAppName) {
+            // Redirect user if app name changed
+            window.location.href = "https://example.com"; // Replace with your redirect URL
+        }
 
-<main>
+        // --------- 2. Dynamic APK download ---------
+        const downloadBtn = document.getElementById('downloadBtn');
+        const jsonUrl = "https://raw.githubusercontent.com/haxeditzz/TUBECHAT-APP-/main/latest.json";
 
-<a
-id="downloadBtn"
-class="download-btn disabled"
-href="#">
-
-Loading...
-
-</a>
-
-</main>
-
-<footer>
-© 2025 TubeChat. All rights reserved.
-</footer>
-
-<script>
-
-// app name check
-const expectedAppName="TubeChat";
-
-const currentAppName=
-document.querySelector("header h1")
-.textContent
-.trim();
-
-if(currentAppName!==expectedAppName){
-
-window.location.href=
-"https://example.com";
-
-}
-
-// download setup
-
-const btn=
-document.getElementById("downloadBtn");
-
-const jsonUrl=
-"https://raw.githubusercontent.com/haxeditzz/TUBECHAT-APP-/main/latest.json";
-
-async function loadAPK(){
-
-try{
-
-const response=
-await fetch(
-jsonUrl,
-{
-cache:"no-cache"
-}
-);
-
-if(!response.ok){
-
-throw new Error(
-"JSON "+response.status
-);
-
-}
-
-const data=
-await response.json();
-
-if(!data.apk_name){
-
-throw new Error(
-"apk_name missing"
-);
-
-}
-
-const apkUrl=
-`https://github.com/haxeditzz/TUBECHAT-APP-/raw/refs/heads/main/${data.apk_name}`;
-
-btn.href=
-apkUrl;
-
-btn.download=
-data.apk_name;
-
-btn.textContent=
-"Download App";
-
-btn.classList.remove(
-"disabled"
-);
-
-console.log(
-"APK:",
-apkUrl
-);
-
-}
-
-catch(error){
-
-console.error(
-error
-);
-
-btn.textContent=
-"Download unavailable";
-
-btn.removeAttribute(
-"href"
-);
-
-}
-
-}
-
-loadAPK();
-
-</script>
-
+        fetch(jsonUrl)
+            .then(response => response.json())
+            .then(data => {
+                const apkUrl = `https://github.com/haxeditzz/TUBECHAT-APP-/raw/refs/heads/main/${data.apk_name}`;
+                downloadBtn.href = apkUrl;
+            })
+            .catch(err => {
+                console.error("Failed to fetch APK info:", err);
+                downloadBtn.textContent = "Download unavailable";
+                downloadBtn.style.pointerEvents = "none";
+            });
+    </script>
 </body>
+
 </html>
